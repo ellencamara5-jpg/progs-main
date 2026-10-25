@@ -1,0 +1,24 @@
+@startuml
+title Arquitetura do cadastro de pessoas
+left to right direction
+
+actor Usuario as usuario
+
+package "Aplicacao Streamlit" {
+    component "Visao.py\nEntrada e configuracao da pagina" as visao
+    component "pages/CRD_Pessoas.py\nFormulario, listagem e exclusao" as pagina
+}
+
+component "Servico.py\nOperacoes de cadastro" as servico
+component "Modelo.py\nClasse Pessoa" as modelo
+database "pessoas_interno\n(lista em memoria)" as dados
+
+usuario --> visao : abre a aplicacao
+visao ..> pagina : pagina multipla descoberta pelo Streamlit
+usuario --> pagina : interage com o cadastro
+pagina --> servico : inserir_pessoa(...)\nretornar_pessoas()\nremover_pessoa(email)
+servico --> modelo : cria Pessoa(nome, email, telefone)
+servico --> dados : consulta, adiciona e remove pessoas
+servico --> pagina : retorna dados para exibicao\nou resultado da exclusao
+
+@enduml

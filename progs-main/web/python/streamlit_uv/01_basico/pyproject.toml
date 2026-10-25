@@ -1,0 +1,20 @@
+[project]
+name = "01-basico"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Hylson", email = "hvescovi@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "sqlalchemy>=2.1.4",
+    "streamlit>=1.65.0",
+]
+
+[project.scripts]
+01-basico = "01_basico:main"
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.13.0"]
+build-backend = "uv_build"
